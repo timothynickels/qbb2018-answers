@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+#enter reference out file from mapping.py followed by the sample file to be compared to the reference.  If a third argument is included, it will be printed prior to a line of a sample that has no match in the reference
+
 import sys
 
 dict = {}
@@ -13,11 +15,18 @@ for line in open(sys.argv[2]):
         continue
     fields_2 = line.strip().split()
     sample_flyID = (fields_2[8])
+    
     if sample_flyID in dict.keys():
         print(dict[sample_flyID] + line.strip("\n\r") )
-    if sample_flyID not in dict.keys():
-        continue
-        #print ("no match")
+        
+    else:   
+        if len(sys.argv) > 3:
+            print (sys.argv[3] + " " + line.strip("\n\r"))
+        
+        
+    
+    
+    
     
 
 
